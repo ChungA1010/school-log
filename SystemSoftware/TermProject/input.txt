@@ -1,0 +1,38 @@
+MAIN    START   1000
+        EXTDEF  ALPHA,BETA,GAMMA
+        EXTREF  DELTA,EPSI
+FIRST   STL     RETADR
+        LDA     =C'EOF'
+        STA     BUFFER
+        LDA     ALPHA
+        ADD     BETA
+        SUB     DELTA
+        COMP    ZERO
+        JEQ     ENDPROG
+        JSUB    CALC
+        J       FIRST
+ZERO    WORD    0
+BUFFER  RESB    10
+RETADR  RESW    1
+        LTORG
+ALPHA   WORD    111
+BETA    WORD    222
+GAMMA   WORD    333
+CALC    +JSUB   MATH
+        +LDA    GAMMA
+        +ADD    #1
+        +STA    RESULT
+        RSUB
+RESULT  RESW    1
+MATH    CSECT
+        EXTREF  GAMMA
+        LDA     GAMMA
+        ADD     #5
+        STA     TMP
+TMP     RESW    1
+        END     MAIN
+SUBSEC  CSECT
+        EXTDEF  DELTA,EPSI
+DELTA   RESW    1
+EPSI    WORD    99
+        END     SUBSEC

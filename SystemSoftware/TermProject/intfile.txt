@@ -1,0 +1,35 @@
+LINE  LOC     LABEL       OPCODE      OPERAND             
+------------------------------------------------------------
+0000  001000  MAIN        START       1000                
+0001  001000  -           EXTDEF      ALPHA,BETA,GAMMA    
+0002  001000  -           EXTREF      DELTA,EPSI          
+0003  001000  FIRST       STL         RETADR              
+0004  001003  -           LDA         =C'EOF'             
+0005  001006  -           STA         BUFFER              
+0006  001009  -           LDA         ALPHA               
+0007  00100C  -           ADD         BETA                
+0008  00100F  -           SUB         DELTA               
+0009  001012  -           COMP        ZERO                
+0010  001015  -           JEQ         ENDPROG             
+0011  001018  -           JSUB        CALC                
+0012  00101B  -           J           FIRST               
+0013  00101E  ZERO        WORD        0                   
+0014  001021  BUFFER      RESB        10                  
+0015  00102B  RETADR      RESW        1                   
+0016  00102E  -           LTORG                           
+0017  00102E  ALPHA       WORD        111                 
+0018  001031  BETA        WORD        222                 
+0019  001034  GAMMA       WORD        333                 
+0020  001037  CALC        +JSUB       MATH                
+0021  001037  -           +LDA        GAMMA               
+0022  001037  -           +ADD        #1                  
+0023  001037  -           +STA        RESULT              
+0024  001037  -           RSUB                            
+0025  00103A  RESULT      RESW        1                   
+0026  00103D  -           MATH        CSECT               
+0027  00103D  -           EXTREF      GAMMA               
+0028  00103D  -           LDA         GAMMA               
+0029  001040  -           ADD         #5                  
+0030  001043  -           STA         TMP                 
+0031  001046  TMP         RESW        1                   
+0032  001049  -           END         MAIN                
