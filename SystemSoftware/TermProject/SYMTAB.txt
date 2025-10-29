@@ -1,0 +1,11 @@
+SYMBOL      ADDRESS   
+----------------------
+AGAIN             100F
+ALPHA             100F
+BETA              1012
+FIRST             1000
+NEXT              1012
+ONE               1015
+RETADR            1029
+SAVE              1025
+TEMP              1018

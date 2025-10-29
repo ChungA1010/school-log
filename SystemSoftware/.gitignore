@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# VSCode 설정
+.vscode/
+tempCodeRunnerFile.cpp
+
+# 빌드 결과물
+*.out
+*.o
+*.exe
+*.log
+
+# 기타 불필요한 파일
+*~
+*.bak

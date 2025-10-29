@@ -1,35 +1,22 @@
 LINE  LOC     LABEL       OPCODE      OPERAND             
 ------------------------------------------------------------
-0000  001000  MAIN        START       1000                
-0001  001000  -           EXTDEF      ALPHA,BETA,GAMMA    
-0002  001000  -           EXTREF      DELTA,EPSI          
-0003  001000  FIRST       STL         RETADR              
-0004  001003  -           LDA         =C'EOF'             
-0005  001006  -           STA         BUFFER              
-0006  001009  -           LDA         ALPHA               
-0007  00100C  -           ADD         BETA                
-0008  00100F  -           SUB         DELTA               
-0009  001012  -           COMP        ZERO                
-0010  001015  -           JEQ         ENDPROG             
-0011  001018  -           JSUB        CALC                
-0012  00101B  -           J           FIRST               
-0013  00101E  ZERO        WORD        0                   
-0014  001021  BUFFER      RESB        10                  
-0015  00102B  RETADR      RESW        1                   
-0016  00102E  -           LTORG                           
-0017  00102E  ALPHA       WORD        111                 
-0018  001031  BETA        WORD        222                 
-0019  001034  GAMMA       WORD        333                 
-0020  001037  CALC        +JSUB       MATH                
-0021  001037  -           +LDA        GAMMA               
-0022  001037  -           +ADD        #1                  
-0023  001037  -           +STA        RESULT              
-0024  001037  -           RSUB                            
-0025  00103A  RESULT      RESW        1                   
-0026  00103D  -           MATH        CSECT               
-0027  00103D  -           EXTREF      GAMMA               
-0028  00103D  -           LDA         GAMMA               
-0029  001040  -           ADD         #5                  
-0030  001043  -           STA         TMP                 
-0031  001046  TMP         RESW        1                   
-0032  001049  -           END         MAIN                
+0000  001000  COPY        START       1000                
+0001  001000  FIRST       STL         RETADR              
+0002  001003  -           LDB         =C'EOF'             
+0003  001006  -           LDA         ALPHA               
+0004  001009  -           ADD         ONE                 
+0005  00100C  -           STA         BETA                
+0006  00100F  ALPHA       WORD        5                   
+0007  001012  BETA        RESW        1                   
+0008  001015  ONE         WORD        1                   
+0009  001018  TEMP        RESB        10                  
+000A  001022  -           LTORG                           
+000B  001025  NEXT        EQU         ALPHA+3             
+000C  001025  SAVE        EQU         *                   
+000D  001025  -           ORG         ALPHA               
+000E  00100F  AGAIN       LDA         NEXT                
+000F  001012  -           ORG         SAVE                
+0010  001025  -           LDA         =X'F1'              
+0011  001028  -           LTORG                           
+0012  001029  RETADR      RESW        1                   
+0013  00102C  -           END         FIRST               

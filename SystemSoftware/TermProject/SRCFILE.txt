@@ -1,0 +1,22 @@
+COPY     START   1000
+FIRST    STL     RETADR
+         LDB     =C'EOF'    
+         LDA     ALPHA
+         ADD     ONE
+         STA     BETA
+ALPHA    WORD    5
+BETA     RESW    1
+ONE      WORD    1
+TEMP     RESB    10
+         LTORG
+NEXT     EQU     ALPHA+3      
+SAVE     EQU     *            
+         ORG     ALPHA        
+AGAIN    LDA     NEXT
+         ORG     SAVE       
+
+         LDA     =X'F1'      
+         LTORG               
+
+RETADR   RESW    1
+         END     FIRST
